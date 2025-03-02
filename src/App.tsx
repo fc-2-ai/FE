@@ -3,6 +3,7 @@ import GlobalStyles from '@/styles/GlobalStyles';
 
 function App() {
   console.log('asdasd');
+  console.log('asdasdads???');
   return (
     <Router>
       <GlobalStyles />
