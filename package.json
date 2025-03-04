@@ -22,6 +22,8 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@eslint/js": "^9.21.0",
     "@tanstack/router-devtools": "^1.112.6",
     "@tanstack/router-plugin": "^1.112.3",
