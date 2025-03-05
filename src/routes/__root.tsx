@@ -6,6 +6,8 @@ import {
   useRouterState,
 } from '@tanstack/react-router';
 import GlobalStyles from '@/styles/GlobalStyles';
+import { ThemeProvider } from 'styled-components';
+import theme from '@/styles/theme';
 
 // 임시 로그인 상태
 const isAuthenticated = false;
@@ -25,9 +27,9 @@ function RootComponent() {
   }, [location.pathname, navigate]);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Outlet />
-    </>
+    </ThemeProvider>
   );
 }
