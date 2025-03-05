@@ -15,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
 
     body,html {
     font-family: "NexonLv2", "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
-    font-size: ${({ theme }) => theme.fontSizes.fz16};
+    font-size: ${({ theme }) => theme.fontSizes.fz58};
     color: ${({ theme }) => theme.colors.text};
     font-weight: ${({ theme }) => theme.fontWeights.regular}
     }
