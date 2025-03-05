@@ -77,3 +77,31 @@ const ModalContent = styled.div`
 ### 💡 husky
 
 pre-commit을 작성하여 lint 테스트를 자동으로 수행한 후 commit이 수행됩니다.
+
+---
+
+### 🌄 SVG
+
+vite-plugin-svgr 라이브러리를 활용하여 svg 파일을 import 해올 수 있습니다.
+
+```typeScript
+import Icon from '@/assets/react.svg?react';
+
+
+const TestSvg = () => {
+
+  returnn (
+  <Icon
+    color="red"
+    width={20}
+    height={20}
+  />
+  )
+}
+
+export default TestSvg;
+
+```
+
+- import 해올 때 마지막에 ?react 을 붙여줘야 합니다.
+- svg 파일에서 fill 색상을 currentColor로 변경해주면 색상 커스텀이 가능합니다.
