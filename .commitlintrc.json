@@ -6,6 +6,7 @@
       "always",
       [
         "docs",
+        "conf",
         "feat",
         "asset",
         "design",
