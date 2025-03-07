@@ -7,16 +7,19 @@ type InputType = {
   width?: string;
   height?: string;
   value?: string;
+  propsPlaceholder?: string;
   // eslint-disable-next-line no-unused-vars
   onChange?: (value: string) => void;
 };
 
-const Input = ({ type, value, onChange }: InputType) => {
+const Input = ({ type, value, onChange, propsPlaceholder }: InputType) => {
   const [showPassword, setShowPassword] = useState(false);
   const placeholder =
     type === 'email'
       ? '📧 이메일을 입력해주세요'
-      : '🔑 비밀번호를 입력해주세요';
+      : type === 'password'
+        ? '🔑 비밀번호를 입력해주세요'
+        : propsPlaceholder;
 
   function handleShow() {
     setShowPassword(!showPassword);
@@ -25,7 +28,9 @@ const Input = ({ type, value, onChange }: InputType) => {
   return (
     <S.InputContainer type={type}>
       <input
-        type={type === 'email' ? 'email' : showPassword ? 'text' : 'password'}
+        type={
+          type === 'password' ? (showPassword ? 'text' : 'password') : 'email'
+        }
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange && onChange(e.target.value)}
@@ -33,7 +38,7 @@ const Input = ({ type, value, onChange }: InputType) => {
       {type === 'password' && (
         <S.EyeIconContainer onClick={handleShow}>
           <S.EyeIcon>👁️</S.EyeIcon>
-          {!showPassword && <S.Slash />}
+          {showPassword && <S.Slash />}
         </S.EyeIconContainer>
       )}
     </S.InputContainer>
