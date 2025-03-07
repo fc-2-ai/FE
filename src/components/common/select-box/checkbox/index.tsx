@@ -1,30 +1,30 @@
-import theme from '@/styles/theme';
 import React from 'react';
 import styled from 'styled-components';
-
-type RadioType = {
+import theme from '@/styles/theme';
+type CheckboxType = {
   select: string;
   children: React.ReactNode;
   // eslint-disable-next-line no-unused-vars
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
-const Radio = ({ select, children, onChange }: RadioType) => {
+
+const Checkbox = ({ select, children, onChange }: CheckboxType) => {
   return (
-    <S.RadioContainer>
+    <S.CheckboxContainer>
       <input
-        type="radio"
+        type="checkbox"
         value={select}
         id={select}
         name={select}
         onChange={onChange}
       />
       <label htmlFor={select}>{children}</label>
-    </S.RadioContainer>
+    </S.CheckboxContainer>
   );
 };
 
 const S = {
-  RadioContainer: styled.div`
+  CheckboxContainer: styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -34,4 +34,5 @@ const S = {
     gap: 5%;
   `,
 };
-export default Radio;
+
+export default Checkbox;
