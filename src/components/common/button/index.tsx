@@ -37,13 +37,12 @@ const Button = ({ type, width, height, children, onClick }: ButtonType) => {
   }
 
   return (
-    <Link
-      to={pathLink}
-      onClick={onClick}>
+    <Link to={pathLink}>
       <S.ButtonContainer
         type={type}
         width={width}
-        height={height}>
+        height={height}
+        onClick={onClick}>
         <p>{message}</p>
       </S.ButtonContainer>
     </Link>
