@@ -5,6 +5,7 @@ import { loginBanner } from '@/mock/mock';
 import logo from '@/assets/logo.png';
 import KakaoLoginButton from '@/components/kakaoLoginButton';
 import GoogleLoginButton from '@/components/googleLoginButton';
+import BannerSlider from '@/components/common/bannerSlider';
 
 export const Route = createFileRoute('/auth/login/')({
   component: RouteComponent,
@@ -17,15 +18,7 @@ function RouteComponent() {
     <S.LoginWrapper>
       <S.LoginContainer>
         <S.LoginLeftContainer>
-          <S.LoginImg>
-            {images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt="logoBanner"
-              />
-            ))}
-          </S.LoginImg>
+          <BannerSlider images={images} />
           <S.LoginTitleContainer>
             <h2>설명 아무거나</h2>
             <p>로그인 페이지에용</p>
@@ -91,15 +84,8 @@ const S = {
     border-radius: ${theme.radius.large};
     padding-top: 5%;
     padding-left: 5%;
+    position: relative;
   `,
-  LoginImg: styled.div`
-    width: 100%;
-    height: 70%;
-    background-color: ${theme.colors.primary} img {
-      object-fit: cover;
-    }
-  `,
-
   LoginForm: styled.div`
     margin-top: 20%;
     width: 100%;
@@ -107,22 +93,21 @@ const S = {
     flex-direction: column;
     gap: 15px;
   `,
-
   LoginTitleContainer: styled.div`
+    margin-top: 7vh;
     max-width: 70%;
     height: 20%;
     overflow-wrap: break-word;
-
     h2 {
       font-size: ${theme.fontSizes.fz24};
       font-weight: ${theme.fontWeights.bold};
+      margin-bottom: 2vh;
     }
 
     p {
       font-size: ${theme.fontSizes.fz18};
     }
   `,
-
   LoginRightContainer: styled.div`
     display: flex;
     justify-content: center;
@@ -164,7 +149,6 @@ const S = {
       font-weight: ${theme.fontWeights.medium};
     }
   `,
-
   LoginRow: styled.div`
     display: flex;
     justify-content: center;
@@ -199,3 +183,5 @@ const S = {
     border: 1px solid ${theme.colors.black};
   `,
 };
+
+export default RouteComponent;

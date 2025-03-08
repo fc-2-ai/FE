@@ -25,6 +25,6 @@ export type UserProfile = {
   provider: string;
 };
 
-export type loginBannerType = {
+export type BannerSliderType = {
   images: Array<string>;
 };
