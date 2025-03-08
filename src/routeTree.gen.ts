@@ -16,6 +16,7 @@ import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
 import { Route as SideBarLayoutVedioArchiveIndexImport } from './routes/_sideBarLayout/vedio-archive/index'
 import { Route as SideBarLayoutMyProjectIndexImport } from './routes/_sideBarLayout/my-project/index'
 import { Route as SideBarLayoutDashboardIndexImport } from './routes/_sideBarLayout/dashboard/index'
+import { Route as AuthSignUpFinishIndexImport } from './routes/auth/signUp/finish/index'
 import { Route as SideBarLayoutDashboardComponentsCardImport } from './routes/_sideBarLayout/dashboard/_components/card'
 
 // Create/Update Routes
@@ -51,6 +52,12 @@ const SideBarLayoutDashboardIndexRoute =
     path: '/dashboard/',
     getParentRoute: () => SideBarLayoutRoute,
   } as any)
+
+const AuthSignUpFinishIndexRoute = AuthSignUpFinishIndexImport.update({
+  id: '/auth/signUp/finish/',
+  path: '/auth/signUp/finish/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SideBarLayoutDashboardComponentsCardRoute =
   SideBarLayoutDashboardComponentsCardImport.update({
@@ -105,6 +112,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SideBarLayoutDashboardComponentsCardImport
       parentRoute: typeof SideBarLayoutImport
     }
+    '/auth/signUp/finish/': {
+      id: '/auth/signUp/finish/'
+      path: '/auth/signUp/finish'
+      fullPath: '/auth/signUp/finish'
+      preLoaderRoute: typeof AuthSignUpFinishIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -136,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/vedio-archive': typeof SideBarLayoutVedioArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
+  '/auth/signUp/finish': typeof AuthSignUpFinishIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -145,6 +160,7 @@ export interface FileRoutesByTo {
   '/vedio-archive': typeof SideBarLayoutVedioArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
+  '/auth/signUp/finish': typeof AuthSignUpFinishIndexRoute
 }
 
 export interface FileRoutesById {
@@ -155,6 +171,7 @@ export interface FileRoutesById {
   '/_sideBarLayout/vedio-archive/': typeof SideBarLayoutVedioArchiveIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/_sideBarLayout/dashboard/_components/card': typeof SideBarLayoutDashboardComponentsCardRoute
+  '/auth/signUp/finish/': typeof AuthSignUpFinishIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -166,6 +183,7 @@ export interface FileRouteTypes {
     | '/vedio-archive'
     | '/auth/login'
     | '/dashboard/card'
+    | '/auth/signUp/finish'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -174,6 +192,7 @@ export interface FileRouteTypes {
     | '/vedio-archive'
     | '/auth/login'
     | '/dashboard/card'
+    | '/auth/signUp/finish'
   id:
     | '__root__'
     | '/_sideBarLayout'
@@ -182,17 +201,20 @@ export interface FileRouteTypes {
     | '/_sideBarLayout/vedio-archive/'
     | '/auth/login/'
     | '/_sideBarLayout/dashboard/_components/card'
+    | '/auth/signUp/finish/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   SideBarLayoutRoute: typeof SideBarLayoutRouteWithChildren
   AuthLoginIndexRoute: typeof AuthLoginIndexRoute
+  AuthSignUpFinishIndexRoute: typeof AuthSignUpFinishIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   SideBarLayoutRoute: SideBarLayoutRouteWithChildren,
   AuthLoginIndexRoute: AuthLoginIndexRoute,
+  AuthSignUpFinishIndexRoute: AuthSignUpFinishIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -206,7 +228,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/_sideBarLayout",
-        "/auth/login/"
+        "/auth/login/",
+        "/auth/signUp/finish/"
       ]
     },
     "/_sideBarLayout": {
@@ -236,6 +259,9 @@ export const routeTree = rootRoute
     "/_sideBarLayout/dashboard/_components/card": {
       "filePath": "_sideBarLayout/dashboard/_components/card.tsx",
       "parent": "/_sideBarLayout"
+    },
+    "/auth/signUp/finish/": {
+      "filePath": "auth/signUp/finish/index.tsx"
     }
   }
 }
