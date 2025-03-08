@@ -16,7 +16,7 @@ const ROUTER_PATH = {
   create: '/my-project',
   finish: '/auth/login/',
 };
-const Button = ({ type, width, height, children, onClick }: ButtonType) => {
+const LinkButton = ({ type, width, height, children, onClick }: ButtonType) => {
   const pathLink = type ? ROUTER_PATH[type] : '/';
 
   let message: React.ReactNode = '';
@@ -74,4 +74,4 @@ const S = {
   `,
 };
 
-export default Button;
+export default LinkButton;
