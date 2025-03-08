@@ -12,6 +12,7 @@ const theme = {
     background2: '#EEF0F5',
     lightGray1: '#E4E5E7',
     lightGray2: '#CDCDCD',
+    lightGray3: '#DEDEDE',
     darkGray1: '#9E9EAD',
     darkGray2: '#8B8B9D',
     darkGray3: '#6E6E84',

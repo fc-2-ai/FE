@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/_sideBarLayout/vedio-archive/')({
+export const Route = createFileRoute('/_sideBarLayout/video-archive/')({
   component: RouteComponent,
 });
 
