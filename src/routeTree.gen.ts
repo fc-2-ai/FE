@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as SideBarLayoutImport } from './routes/_sideBarLayout'
 import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
-import { Route as SideBarLayoutVedioArchiveIndexImport } from './routes/_sideBarLayout/vedio-archive/index'
+import { Route as SideBarLayoutVideoArchiveIndexImport } from './routes/_sideBarLayout/video-archive/index'
 import { Route as SideBarLayoutMyProjectIndexImport } from './routes/_sideBarLayout/my-project/index'
 import { Route as SideBarLayoutDashboardIndexImport } from './routes/_sideBarLayout/dashboard/index'
 import { Route as SideBarLayoutDashboardComponentsCardImport } from './routes/_sideBarLayout/dashboard/_components/card'
@@ -31,10 +31,10 @@ const AuthLoginIndexRoute = AuthLoginIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const SideBarLayoutVedioArchiveIndexRoute =
-  SideBarLayoutVedioArchiveIndexImport.update({
-    id: '/vedio-archive/',
-    path: '/vedio-archive/',
+const SideBarLayoutVideoArchiveIndexRoute =
+  SideBarLayoutVideoArchiveIndexImport.update({
+    id: '/video-archive/',
+    path: '/video-archive/',
     getParentRoute: () => SideBarLayoutRoute,
   } as any)
 
@@ -84,11 +84,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SideBarLayoutMyProjectIndexImport
       parentRoute: typeof SideBarLayoutImport
     }
-    '/_sideBarLayout/vedio-archive/': {
-      id: '/_sideBarLayout/vedio-archive/'
-      path: '/vedio-archive'
-      fullPath: '/vedio-archive'
-      preLoaderRoute: typeof SideBarLayoutVedioArchiveIndexImport
+    '/_sideBarLayout/video-archive/': {
+      id: '/_sideBarLayout/video-archive/'
+      path: '/video-archive'
+      fullPath: '/video-archive'
+      preLoaderRoute: typeof SideBarLayoutVideoArchiveIndexImport
       parentRoute: typeof SideBarLayoutImport
     }
     '/auth/login/': {
@@ -113,14 +113,14 @@ declare module '@tanstack/react-router' {
 interface SideBarLayoutRouteChildren {
   SideBarLayoutDashboardIndexRoute: typeof SideBarLayoutDashboardIndexRoute
   SideBarLayoutMyProjectIndexRoute: typeof SideBarLayoutMyProjectIndexRoute
-  SideBarLayoutVedioArchiveIndexRoute: typeof SideBarLayoutVedioArchiveIndexRoute
+  SideBarLayoutVideoArchiveIndexRoute: typeof SideBarLayoutVideoArchiveIndexRoute
   SideBarLayoutDashboardComponentsCardRoute: typeof SideBarLayoutDashboardComponentsCardRoute
 }
 
 const SideBarLayoutRouteChildren: SideBarLayoutRouteChildren = {
   SideBarLayoutDashboardIndexRoute: SideBarLayoutDashboardIndexRoute,
   SideBarLayoutMyProjectIndexRoute: SideBarLayoutMyProjectIndexRoute,
-  SideBarLayoutVedioArchiveIndexRoute: SideBarLayoutVedioArchiveIndexRoute,
+  SideBarLayoutVideoArchiveIndexRoute: SideBarLayoutVideoArchiveIndexRoute,
   SideBarLayoutDashboardComponentsCardRoute:
     SideBarLayoutDashboardComponentsCardRoute,
 }
@@ -133,7 +133,7 @@ export interface FileRoutesByFullPath {
   '': typeof SideBarLayoutRouteWithChildren
   '/dashboard': typeof SideBarLayoutDashboardIndexRoute
   '/my-project': typeof SideBarLayoutMyProjectIndexRoute
-  '/vedio-archive': typeof SideBarLayoutVedioArchiveIndexRoute
+  '/video-archive': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
 }
@@ -142,7 +142,7 @@ export interface FileRoutesByTo {
   '': typeof SideBarLayoutRouteWithChildren
   '/dashboard': typeof SideBarLayoutDashboardIndexRoute
   '/my-project': typeof SideBarLayoutMyProjectIndexRoute
-  '/vedio-archive': typeof SideBarLayoutVedioArchiveIndexRoute
+  '/video-archive': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
 }
@@ -152,7 +152,7 @@ export interface FileRoutesById {
   '/_sideBarLayout': typeof SideBarLayoutRouteWithChildren
   '/_sideBarLayout/dashboard/': typeof SideBarLayoutDashboardIndexRoute
   '/_sideBarLayout/my-project/': typeof SideBarLayoutMyProjectIndexRoute
-  '/_sideBarLayout/vedio-archive/': typeof SideBarLayoutVedioArchiveIndexRoute
+  '/_sideBarLayout/video-archive/': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/_sideBarLayout/dashboard/_components/card': typeof SideBarLayoutDashboardComponentsCardRoute
 }
@@ -163,7 +163,7 @@ export interface FileRouteTypes {
     | ''
     | '/dashboard'
     | '/my-project'
-    | '/vedio-archive'
+    | '/video-archive'
     | '/auth/login'
     | '/dashboard/card'
   fileRoutesByTo: FileRoutesByTo
@@ -171,7 +171,7 @@ export interface FileRouteTypes {
     | ''
     | '/dashboard'
     | '/my-project'
-    | '/vedio-archive'
+    | '/video-archive'
     | '/auth/login'
     | '/dashboard/card'
   id:
@@ -179,7 +179,7 @@ export interface FileRouteTypes {
     | '/_sideBarLayout'
     | '/_sideBarLayout/dashboard/'
     | '/_sideBarLayout/my-project/'
-    | '/_sideBarLayout/vedio-archive/'
+    | '/_sideBarLayout/video-archive/'
     | '/auth/login/'
     | '/_sideBarLayout/dashboard/_components/card'
   fileRoutesById: FileRoutesById
@@ -214,7 +214,7 @@ export const routeTree = rootRoute
       "children": [
         "/_sideBarLayout/dashboard/",
         "/_sideBarLayout/my-project/",
-        "/_sideBarLayout/vedio-archive/",
+        "/_sideBarLayout/video-archive/",
         "/_sideBarLayout/dashboard/_components/card"
       ]
     },
@@ -226,8 +226,8 @@ export const routeTree = rootRoute
       "filePath": "_sideBarLayout/my-project/index.tsx",
       "parent": "/_sideBarLayout"
     },
-    "/_sideBarLayout/vedio-archive/": {
-      "filePath": "_sideBarLayout/vedio-archive/index.tsx",
+    "/_sideBarLayout/video-archive/": {
+      "filePath": "_sideBarLayout/video-archive/index.tsx",
       "parent": "/_sideBarLayout"
     },
     "/auth/login/": {
