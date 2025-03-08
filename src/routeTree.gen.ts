@@ -12,6 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SideBarLayoutImport } from './routes/_sideBarLayout'
+import { Route as HelpPasswordIndexImport } from './routes/help/password/index'
+import { Route as AuthSignInIndexImport } from './routes/auth/signIn/index'
 import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
 import { Route as SideBarLayoutVideoArchiveIndexImport } from './routes/_sideBarLayout/video-archive/index'
 import { Route as SideBarLayoutMyProjectIndexImport } from './routes/_sideBarLayout/my-project/index'
@@ -22,6 +24,18 @@ import { Route as SideBarLayoutDashboardComponentsCardImport } from './routes/_s
 
 const SideBarLayoutRoute = SideBarLayoutImport.update({
   id: '/_sideBarLayout',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HelpPasswordIndexRoute = HelpPasswordIndexImport.update({
+  id: '/help/password/',
+  path: '/help/password/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthSignInIndexRoute = AuthSignInIndexImport.update({
+  id: '/auth/signIn/',
+  path: '/auth/signIn/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -98,6 +112,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginIndexImport
       parentRoute: typeof rootRoute
     }
+    '/auth/signIn/': {
+      id: '/auth/signIn/'
+      path: '/auth/signIn'
+      fullPath: '/auth/signIn'
+      preLoaderRoute: typeof AuthSignInIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/help/password/': {
+      id: '/help/password/'
+      path: '/help/password'
+      fullPath: '/help/password'
+      preLoaderRoute: typeof HelpPasswordIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/_sideBarLayout/dashboard/_components/card': {
       id: '/_sideBarLayout/dashboard/_components/card'
       path: '/dashboard/card'
@@ -135,6 +163,8 @@ export interface FileRoutesByFullPath {
   '/my-project': typeof SideBarLayoutMyProjectIndexRoute
   '/video-archive': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
+  '/auth/signIn': typeof AuthSignInIndexRoute
+  '/help/password': typeof HelpPasswordIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
 }
 
@@ -144,6 +174,8 @@ export interface FileRoutesByTo {
   '/my-project': typeof SideBarLayoutMyProjectIndexRoute
   '/video-archive': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
+  '/auth/signIn': typeof AuthSignInIndexRoute
+  '/help/password': typeof HelpPasswordIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
 }
 
@@ -154,6 +186,8 @@ export interface FileRoutesById {
   '/_sideBarLayout/my-project/': typeof SideBarLayoutMyProjectIndexRoute
   '/_sideBarLayout/video-archive/': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
+  '/auth/signIn/': typeof AuthSignInIndexRoute
+  '/help/password/': typeof HelpPasswordIndexRoute
   '/_sideBarLayout/dashboard/_components/card': typeof SideBarLayoutDashboardComponentsCardRoute
 }
 
@@ -165,6 +199,8 @@ export interface FileRouteTypes {
     | '/my-project'
     | '/video-archive'
     | '/auth/login'
+    | '/auth/signIn'
+    | '/help/password'
     | '/dashboard/card'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -173,6 +209,8 @@ export interface FileRouteTypes {
     | '/my-project'
     | '/video-archive'
     | '/auth/login'
+    | '/auth/signIn'
+    | '/help/password'
     | '/dashboard/card'
   id:
     | '__root__'
@@ -181,6 +219,8 @@ export interface FileRouteTypes {
     | '/_sideBarLayout/my-project/'
     | '/_sideBarLayout/video-archive/'
     | '/auth/login/'
+    | '/auth/signIn/'
+    | '/help/password/'
     | '/_sideBarLayout/dashboard/_components/card'
   fileRoutesById: FileRoutesById
 }
@@ -188,11 +228,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   SideBarLayoutRoute: typeof SideBarLayoutRouteWithChildren
   AuthLoginIndexRoute: typeof AuthLoginIndexRoute
+  AuthSignInIndexRoute: typeof AuthSignInIndexRoute
+  HelpPasswordIndexRoute: typeof HelpPasswordIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   SideBarLayoutRoute: SideBarLayoutRouteWithChildren,
   AuthLoginIndexRoute: AuthLoginIndexRoute,
+  AuthSignInIndexRoute: AuthSignInIndexRoute,
+  HelpPasswordIndexRoute: HelpPasswordIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -206,7 +250,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/_sideBarLayout",
-        "/auth/login/"
+        "/auth/login/",
+        "/auth/signIn/",
+        "/help/password/"
       ]
     },
     "/_sideBarLayout": {
@@ -232,6 +278,12 @@ export const routeTree = rootRoute
     },
     "/auth/login/": {
       "filePath": "auth/login/index.tsx"
+    },
+    "/auth/signIn/": {
+      "filePath": "auth/signIn/index.tsx"
+    },
+    "/help/password/": {
+      "filePath": "help/password/index.tsx"
     },
     "/_sideBarLayout/dashboard/_components/card": {
       "filePath": "_sideBarLayout/dashboard/_components/card.tsx",

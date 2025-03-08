@@ -1,11 +1,15 @@
 import theme from '@/styles/theme';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import styled from 'styled-components';
 import { loginBanner } from '@/mock/mock';
 import logo from '@/assets/logo.png';
 import KakaoLoginButton from '@/components/kakaoLoginButton';
 import GoogleLoginButton from '@/components/googleLoginButton';
 import BannerSlider from '@/components/common/bannerSlider';
+import Input from '@/components/common/input';
+import Checkbox from '@/components/common/selectBox/checkbox';
+import { useState } from 'react';
+import LinkButton from '@/components/common/button/linkButton';
 
 export const Route = createFileRoute('/auth/login/')({
   component: RouteComponent,
@@ -13,6 +17,15 @@ export const Route = createFileRoute('/auth/login/')({
 
 function RouteComponent() {
   const { images } = loginBanner();
+  const [isChecked, setIsChecked] = useState(false);
+
+  function handleCheckChange() {
+    setIsChecked(!isChecked);
+  }
+
+  function handleClick() {
+    setIsChecked(!isChecked);
+  }
 
   return (
     <S.LoginWrapper>
@@ -33,20 +46,23 @@ function RouteComponent() {
               />
             </S.LogoImg>
             <S.LoginForm>
-              <S.LoginTempContainer />
-              <S.LoginTempContainer />
+              <Input type="email" />
+              <Input type="password" />
             </S.LoginForm>
             <S.LoginRightSubContainer>
-              <div>
-                <input
-                  type="checkbox"
-                  id="saveId"
-                />
-                <label htmlFor="saveId">아이디 저장</label>
-              </div>
-              <p>비밀번호를 잊으셨나요?</p>
+              <Checkbox
+                select={isChecked ? 'true' : ''}
+                onChange={handleCheckChange}
+                onClick={handleClick}>
+                아이디 저장
+              </Checkbox>
+              <Link to="/help/password">
+                <p>비밀번호를 잊으셨나요?</p>
+              </Link>
             </S.LoginRightSubContainer>
-            <S.LoginTempContainer />
+            <S.LoginMaxWidth>
+              <LinkButton type="login" />
+            </S.LoginMaxWidth>
             <S.LoginColumn>
               <span>또는</span>
               <KakaoLoginButton />
@@ -54,7 +70,9 @@ function RouteComponent() {
             </S.LoginColumn>
             <S.LoginRow>
               계정이 없나요?
-              <p>회원가입</p>
+              <Link to="/auth/signIn">
+                <p>회원가입</p>
+              </Link>
             </S.LoginRow>
           </S.LoginRightFormContainer>
         </S.LoginRightContainer>
@@ -87,11 +105,11 @@ const S = {
     position: relative;
   `,
   LoginForm: styled.div`
-    margin-top: 20%;
+    margin-top: 30%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 4vh;
   `,
   LoginTitleContainer: styled.div`
     margin-top: 7vh;
@@ -149,6 +167,7 @@ const S = {
       font-weight: ${theme.fontWeights.medium};
     }
   `,
+
   LoginRow: styled.div`
     display: flex;
     justify-content: center;
@@ -174,6 +193,10 @@ const S = {
     span {
       margin-bottom: 2vh;
     }
+  `,
+
+  LoginMaxWidth: styled.div`
+    min-width: 100%;
   `,
   LoginTempContainer: styled.div`
     width: 100%;
