@@ -10,7 +10,9 @@ import Input from '@/components/common/input';
 import Checkbox from '@/components/common/selectBox/checkbox';
 import { useState } from 'react';
 import LinkButton from '@/components/common/button/linkButton';
-
+import { useForm, Controller } from 'react-hook-form';
+import { LoginSchema, type LoginSchemaType } from '@/schema/LoginSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 export const Route = createFileRoute('/auth/login/')({
   component: RouteComponent,
 });
@@ -19,6 +21,18 @@ function RouteComponent() {
   const { images } = loginBanner();
   const [isChecked, setIsChecked] = useState(false);
 
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<LoginSchemaType>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
   function handleCheckChange() {
     setIsChecked(!isChecked);
   }
@@ -26,6 +40,12 @@ function RouteComponent() {
   function handleClick() {
     setIsChecked(!isChecked);
   }
+
+  // 로그인 API 호출
+  const onSubmit = (data: LoginSchemaType) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  };
 
   return (
     <S.LoginWrapper>
@@ -45,24 +65,61 @@ function RouteComponent() {
                 alt="logo"
               />
             </S.LogoImg>
-            <S.LoginForm>
-              <Input type="email" />
-              <Input type="password" />
+            <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      type="email"
+                      {...field}
+                    />
+                  )}
+                />
+                <S.ErrorContainer>
+                  {errors.email && (
+                    <S.ErrorMessage>{errors.email.message}</S.ErrorMessage>
+                  )}
+                </S.ErrorContainer>
+              </div>
+
+              <div>
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      type="password"
+                      {...field}
+                    />
+                  )}
+                />
+                <S.ErrorContainer>
+                  {errors.password && (
+                    <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+                  )}
+                </S.ErrorContainer>
+              </div>
+
+              <S.LoginRightSubContainer>
+                <Checkbox
+                  select={isChecked ? 'true' : ''}
+                  onChange={handleCheckChange}
+                  onClick={handleClick}>
+                  아이디 저장
+                </Checkbox>
+                <Link to="/help/password">
+                  <p>비밀번호를 잊으셨나요?</p>
+                </Link>
+              </S.LoginRightSubContainer>
+              <S.LoginMaxWidth>
+                <LinkButton
+                  type="login"
+                  onClick={handleSubmit(onSubmit)}
+                />
+              </S.LoginMaxWidth>
             </S.LoginForm>
-            <S.LoginRightSubContainer>
-              <Checkbox
-                select={isChecked ? 'true' : ''}
-                onChange={handleCheckChange}
-                onClick={handleClick}>
-                아이디 저장
-              </Checkbox>
-              <Link to="/help/password">
-                <p>비밀번호를 잊으셨나요?</p>
-              </Link>
-            </S.LoginRightSubContainer>
-            <S.LoginMaxWidth>
-              <LinkButton type="login" />
-            </S.LoginMaxWidth>
             <S.LoginColumn>
               <span>또는</span>
               <KakaoLoginButton />
@@ -109,7 +166,7 @@ const S = {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 4vh;
+    gap: 1vh;
   `,
   LoginTitleContainer: styled.div`
     margin-top: 7vh;
@@ -155,6 +212,14 @@ const S = {
       width: 80%;
     }
   `,
+  ErrorContainer: styled.div`
+    height: 2.5vh;
+    margin-top: 1.5vh;
+  `,
+  ErrorMessage: styled.p`
+    color: ${theme.colors.error};
+    font-size: ${theme.fontSizes.fz18};
+  `,
   LoginRightSubContainer: styled.div`
     display: flex;
     justify-content: space-between;
@@ -197,6 +262,7 @@ const S = {
 
   LoginMaxWidth: styled.div`
     min-width: 100%;
+    margin-top: 1vh;
   `,
   LoginTempContainer: styled.div`
     width: 100%;
