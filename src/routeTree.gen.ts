@@ -18,6 +18,8 @@ import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
 import { Route as SideBarLayoutVideoArchiveIndexImport } from './routes/_sideBarLayout/video-archive/index'
 import { Route as SideBarLayoutMyProjectIndexImport } from './routes/_sideBarLayout/my-project/index'
 import { Route as SideBarLayoutDashboardIndexImport } from './routes/_sideBarLayout/dashboard/index'
+import { Route as AuthCallbackKakaoIndexImport } from './routes/auth/callback/kakao/index'
+import { Route as AuthCallbackGoogleIndexImport } from './routes/auth/callback/google/index'
 import { Route as SideBarLayoutDashboardComponentsCardImport } from './routes/_sideBarLayout/dashboard/_components/card'
 
 // Create/Update Routes
@@ -65,6 +67,18 @@ const SideBarLayoutDashboardIndexRoute =
     path: '/dashboard/',
     getParentRoute: () => SideBarLayoutRoute,
   } as any)
+
+const AuthCallbackKakaoIndexRoute = AuthCallbackKakaoIndexImport.update({
+  id: '/auth/callback/kakao/',
+  path: '/auth/callback/kakao/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthCallbackGoogleIndexRoute = AuthCallbackGoogleIndexImport.update({
+  id: '/auth/callback/google/',
+  path: '/auth/callback/google/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SideBarLayoutDashboardComponentsCardRoute =
   SideBarLayoutDashboardComponentsCardImport.update({
@@ -133,6 +147,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SideBarLayoutDashboardComponentsCardImport
       parentRoute: typeof SideBarLayoutImport
     }
+    '/auth/callback/google/': {
+      id: '/auth/callback/google/'
+      path: '/auth/callback/google'
+      fullPath: '/auth/callback/google'
+      preLoaderRoute: typeof AuthCallbackGoogleIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/callback/kakao/': {
+      id: '/auth/callback/kakao/'
+      path: '/auth/callback/kakao'
+      fullPath: '/auth/callback/kakao'
+      preLoaderRoute: typeof AuthCallbackKakaoIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -166,6 +194,8 @@ export interface FileRoutesByFullPath {
   '/auth/signIn': typeof AuthSignInIndexRoute
   '/help/password': typeof HelpPasswordIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
+  '/auth/callback/google': typeof AuthCallbackGoogleIndexRoute
+  '/auth/callback/kakao': typeof AuthCallbackKakaoIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -177,6 +207,8 @@ export interface FileRoutesByTo {
   '/auth/signIn': typeof AuthSignInIndexRoute
   '/help/password': typeof HelpPasswordIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
+  '/auth/callback/google': typeof AuthCallbackGoogleIndexRoute
+  '/auth/callback/kakao': typeof AuthCallbackKakaoIndexRoute
 }
 
 export interface FileRoutesById {
@@ -189,6 +221,8 @@ export interface FileRoutesById {
   '/auth/signIn/': typeof AuthSignInIndexRoute
   '/help/password/': typeof HelpPasswordIndexRoute
   '/_sideBarLayout/dashboard/_components/card': typeof SideBarLayoutDashboardComponentsCardRoute
+  '/auth/callback/google/': typeof AuthCallbackGoogleIndexRoute
+  '/auth/callback/kakao/': typeof AuthCallbackKakaoIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -202,6 +236,8 @@ export interface FileRouteTypes {
     | '/auth/signIn'
     | '/help/password'
     | '/dashboard/card'
+    | '/auth/callback/google'
+    | '/auth/callback/kakao'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -212,6 +248,8 @@ export interface FileRouteTypes {
     | '/auth/signIn'
     | '/help/password'
     | '/dashboard/card'
+    | '/auth/callback/google'
+    | '/auth/callback/kakao'
   id:
     | '__root__'
     | '/_sideBarLayout'
@@ -222,6 +260,8 @@ export interface FileRouteTypes {
     | '/auth/signIn/'
     | '/help/password/'
     | '/_sideBarLayout/dashboard/_components/card'
+    | '/auth/callback/google/'
+    | '/auth/callback/kakao/'
   fileRoutesById: FileRoutesById
 }
 
@@ -230,6 +270,8 @@ export interface RootRouteChildren {
   AuthLoginIndexRoute: typeof AuthLoginIndexRoute
   AuthSignInIndexRoute: typeof AuthSignInIndexRoute
   HelpPasswordIndexRoute: typeof HelpPasswordIndexRoute
+  AuthCallbackGoogleIndexRoute: typeof AuthCallbackGoogleIndexRoute
+  AuthCallbackKakaoIndexRoute: typeof AuthCallbackKakaoIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -237,6 +279,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginIndexRoute: AuthLoginIndexRoute,
   AuthSignInIndexRoute: AuthSignInIndexRoute,
   HelpPasswordIndexRoute: HelpPasswordIndexRoute,
+  AuthCallbackGoogleIndexRoute: AuthCallbackGoogleIndexRoute,
+  AuthCallbackKakaoIndexRoute: AuthCallbackKakaoIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -252,7 +296,9 @@ export const routeTree = rootRoute
         "/_sideBarLayout",
         "/auth/login/",
         "/auth/signIn/",
-        "/help/password/"
+        "/help/password/",
+        "/auth/callback/google/",
+        "/auth/callback/kakao/"
       ]
     },
     "/_sideBarLayout": {
@@ -288,6 +334,12 @@ export const routeTree = rootRoute
     "/_sideBarLayout/dashboard/_components/card": {
       "filePath": "_sideBarLayout/dashboard/_components/card.tsx",
       "parent": "/_sideBarLayout"
+    },
+    "/auth/callback/google/": {
+      "filePath": "auth/callback/google/index.tsx"
+    },
+    "/auth/callback/kakao/": {
+      "filePath": "auth/callback/kakao/index.tsx"
     }
   }
 }
