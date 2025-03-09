@@ -3,13 +3,7 @@ import useDialogStore from '@/store/useDialogStore';
 import styled from 'styled-components';
 
 const Dialog = () => {
-  const {
-    isOpen,
-    desc,
-    onConfirm = () => {},
-    onCancel = () => {},
-    isConfirm,
-  } = useDialogStore();
+  const { isOpen, desc, onConfirm, onCancel, isConfirm } = useDialogStore();
 
   const ref = useRef<HTMLDivElement>(null);
 
