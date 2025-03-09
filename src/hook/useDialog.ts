@@ -4,12 +4,12 @@ export const useDialog = () => {
   const openAlert = useDialogStore((state) => state.openAlert);
   const openConfirm = useDialogStore((state) => state.openConfirm);
 
-  const alert = (message: string) => {
-    openAlert(message);
+  const alert = (desc: string) => {
+    openAlert(desc);
   };
 
-  const confirm = async (message: string) => {
-    return await openConfirm(message);
+  const confirm = async (desc: string) => {
+    return await openConfirm(desc);
   };
 
   return { alert, confirm };
