@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import useDialogStore from '@/store/useDialogStore';
 import styled from 'styled-components';
 
-const Dialog: React.FC = () => {
+const Dialog = () => {
   const {
     isOpen,
     desc,
@@ -10,6 +10,8 @@ const Dialog: React.FC = () => {
     onCancel = () => {},
     isConfirm,
   } = useDialogStore();
+
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleConfirm = () => {
     onConfirm();
@@ -19,16 +21,34 @@ const Dialog: React.FC = () => {
     onCancel();
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const key = e.key;
+    if (key === 'Enter') {
+      e.preventDefault();
+      onConfirm();
+    }
+    if (isConfirm && key === 'Escape') {
+      handleCancel();
+    }
+  };
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.focus();
+    }
+  }, [isOpen, isConfirm]);
+
   if (!isOpen) return null;
 
   return (
-    <S.DialogBackDrop>
+    <S.DialogBackDrop
+      onKeyDown={handleKeyDown}
+      tabIndex={-1}
+      ref={ref}>
       <S.DialogContainer>
         <S.DialogDesc>{desc}</S.DialogDesc>
         <S.DialogBtnWrap>
-          {isConfirm ? (
-            <S.DialogBtn onClick={handleCancel}>취소</S.DialogBtn>
-          ) : null}
+          {isConfirm && <S.DialogBtn onClick={handleCancel}>취소</S.DialogBtn>}
           <S.DialogBtn
             $btnType={'confirm'}
             onClick={handleConfirm}>
