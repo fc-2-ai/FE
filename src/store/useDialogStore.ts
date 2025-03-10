@@ -1,36 +1,36 @@
 import { create } from 'zustand';
-import React from 'react';
 
 interface DialogState {
   isOpen: boolean;
   isConfirm: boolean;
-  desc: React.ReactNode;
+  messages: string[];
   onConfirm: () => void;
   onCancel: () => void;
 
   /* eslint-disable no-unused-vars */
-  openAlert: (desc: React.ReactNode) => void;
-  openConfirm: (desc: React.ReactNode) => Promise<boolean>;
+
+  openAlert: (messages: string[]) => void;
+  openConfirm: (messages: string[]) => Promise<boolean>;
   closeDialog: () => void;
 }
 
 const useDialogStore = create<DialogState>((set) => ({
   isOpen: false,
   isConfirm: false,
-  desc: '',
+  messages: [],
   onConfirm: () => {},
   onCancel: () => {},
 
-  openAlert: (desc: React.ReactNode) => {
-    set({ isOpen: true, isConfirm: false, desc: desc });
+  openAlert: (messages: string[]) => {
+    set({ isOpen: true, isConfirm: false, messages: messages });
   },
 
-  openConfirm: (desc: React.ReactNode) => {
+  openConfirm: (messages: string[]) => {
     return new Promise((resolve) => {
       set({
         isOpen: true,
         isConfirm: true,
-        desc: desc,
+        messages: messages,
         onConfirm: () => {
           resolve(true);
           set({ isOpen: false });
@@ -44,7 +44,12 @@ const useDialogStore = create<DialogState>((set) => ({
   },
 
   closeDialog: () =>
-    set({ isOpen: false, desc: '', onConfirm: () => {}, onCancel: () => {} }),
+    set({
+      isOpen: false,
+      messages: [],
+      onConfirm: () => {},
+      onCancel: () => {},
+    }),
 }));
 
 export default useDialogStore;

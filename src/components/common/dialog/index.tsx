@@ -3,7 +3,7 @@ import useDialogStore from '@/store/useDialogStore';
 import styled from 'styled-components';
 
 const Dialog = () => {
-  const { isOpen, desc, onConfirm, onCancel, isConfirm } = useDialogStore();
+  const { isOpen, messages, onConfirm, onCancel, isConfirm } = useDialogStore();
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,7 +40,10 @@ const Dialog = () => {
       tabIndex={-1}
       ref={ref}>
       <S.DialogContainer>
-        <S.DialogDesc>{desc}</S.DialogDesc>
+        {messages.map((message, i) => (
+          <S.DialogDesc key={i}>{message}</S.DialogDesc>
+        ))}
+
         <S.DialogBtnWrap>
           {isConfirm && <S.DialogBtn onClick={handleCancel}>취소</S.DialogBtn>}
           <S.DialogBtn
@@ -74,15 +77,14 @@ const S = {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 300px;
-    padding: 20px;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 35px 20px 20px;
     background: ${({ theme }) => theme.colors.white};
     border-radius: ${({ theme }) => theme.radius.medium};
   `,
 
-  DialogDesc: styled.div`
-    min-height: 30px;
-    margin-top: 10px;
+  DialogDesc: styled.p`
     text-align: center;
   `,
 
