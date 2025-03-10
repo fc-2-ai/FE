@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import styled from 'styled-components';
-import finishImg from '@/assets/finishImg.png';
+import finishImg from '@/assets/finish-img.svg';
 import theme from '@/styles/theme';
 import LinkButton from '@/components/common/button/linkButton';
 
