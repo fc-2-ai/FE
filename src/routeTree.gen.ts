@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as SideBarLayoutImport } from './routes/_sideBarLayout'
 import { Route as HelpPasswordIndexImport } from './routes/help/password/index'
-import { Route as AuthSignInIndexImport } from './routes/auth/signIn/index'
+import { Route as AuthSignInIndexImport } from './routes/auth/sign-in/index'
 import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
 import { Route as SideBarLayoutVideoArchiveIndexImport } from './routes/_sideBarLayout/video-archive/index'
 import { Route as SideBarLayoutMyProjectIndexImport } from './routes/_sideBarLayout/my-project/index'
@@ -36,8 +36,8 @@ const HelpPasswordIndexRoute = HelpPasswordIndexImport.update({
 } as any)
 
 const AuthSignInIndexRoute = AuthSignInIndexImport.update({
-  id: '/auth/signIn/',
-  path: '/auth/signIn/',
+  id: '/auth/sign-in/',
+  path: '/auth/sign-in/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -126,10 +126,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginIndexImport
       parentRoute: typeof rootRoute
     }
-    '/auth/signIn/': {
-      id: '/auth/signIn/'
-      path: '/auth/signIn'
-      fullPath: '/auth/signIn'
+    '/auth/sign-in/': {
+      id: '/auth/sign-in/'
+      path: '/auth/sign-in'
+      fullPath: '/auth/sign-in'
       preLoaderRoute: typeof AuthSignInIndexImport
       parentRoute: typeof rootRoute
     }
@@ -191,7 +191,7 @@ export interface FileRoutesByFullPath {
   '/my-project': typeof SideBarLayoutMyProjectIndexRoute
   '/video-archive': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
-  '/auth/signIn': typeof AuthSignInIndexRoute
+  '/auth/sign-in': typeof AuthSignInIndexRoute
   '/help/password': typeof HelpPasswordIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
   '/auth/callback/google': typeof AuthCallbackGoogleIndexRoute
@@ -204,7 +204,7 @@ export interface FileRoutesByTo {
   '/my-project': typeof SideBarLayoutMyProjectIndexRoute
   '/video-archive': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
-  '/auth/signIn': typeof AuthSignInIndexRoute
+  '/auth/sign-in': typeof AuthSignInIndexRoute
   '/help/password': typeof HelpPasswordIndexRoute
   '/dashboard/card': typeof SideBarLayoutDashboardComponentsCardRoute
   '/auth/callback/google': typeof AuthCallbackGoogleIndexRoute
@@ -218,7 +218,7 @@ export interface FileRoutesById {
   '/_sideBarLayout/my-project/': typeof SideBarLayoutMyProjectIndexRoute
   '/_sideBarLayout/video-archive/': typeof SideBarLayoutVideoArchiveIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
-  '/auth/signIn/': typeof AuthSignInIndexRoute
+  '/auth/sign-in/': typeof AuthSignInIndexRoute
   '/help/password/': typeof HelpPasswordIndexRoute
   '/_sideBarLayout/dashboard/_components/card': typeof SideBarLayoutDashboardComponentsCardRoute
   '/auth/callback/google/': typeof AuthCallbackGoogleIndexRoute
@@ -233,7 +233,7 @@ export interface FileRouteTypes {
     | '/my-project'
     | '/video-archive'
     | '/auth/login'
-    | '/auth/signIn'
+    | '/auth/sign-in'
     | '/help/password'
     | '/dashboard/card'
     | '/auth/callback/google'
@@ -245,7 +245,7 @@ export interface FileRouteTypes {
     | '/my-project'
     | '/video-archive'
     | '/auth/login'
-    | '/auth/signIn'
+    | '/auth/sign-in'
     | '/help/password'
     | '/dashboard/card'
     | '/auth/callback/google'
@@ -257,7 +257,7 @@ export interface FileRouteTypes {
     | '/_sideBarLayout/my-project/'
     | '/_sideBarLayout/video-archive/'
     | '/auth/login/'
-    | '/auth/signIn/'
+    | '/auth/sign-in/'
     | '/help/password/'
     | '/_sideBarLayout/dashboard/_components/card'
     | '/auth/callback/google/'
@@ -295,7 +295,7 @@ export const routeTree = rootRoute
       "children": [
         "/_sideBarLayout",
         "/auth/login/",
-        "/auth/signIn/",
+        "/auth/sign-in/",
         "/help/password/",
         "/auth/callback/google/",
         "/auth/callback/kakao/"
@@ -325,8 +325,8 @@ export const routeTree = rootRoute
     "/auth/login/": {
       "filePath": "auth/login/index.tsx"
     },
-    "/auth/signIn/": {
-      "filePath": "auth/signIn/index.tsx"
+    "/auth/sign-in/": {
+      "filePath": "auth/sign-in/index.tsx"
     },
     "/help/password/": {
       "filePath": "help/password/index.tsx"

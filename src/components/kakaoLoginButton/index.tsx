@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAuthorizationUrl } from '@/api/login/oauth-service';
 import { kakaoOAuth } from '@/api/login/oAuth-config';
+import kakao from '@/assets/logo/kakao-logo.png';
 
 const KakaoLoginButton = () => {
   const handleKakaoLogin = () => {
@@ -27,9 +28,9 @@ const KakaoLoginButton = () => {
         fontSize: '14px',
       }}>
       <img
-        src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"
+        src={kakao}
         alt="카카오 로고"
-        style={{ width: '25px', marginRight: '8px' }}
+        style={{ width: '24px', marginRight: '8px' }}
       />
       카카오 계정으로 가입하기
     </button>

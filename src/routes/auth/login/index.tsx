@@ -2,7 +2,7 @@ import theme from '@/styles/theme';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import styled from 'styled-components';
 import { loginBanner } from '@/mock/mock';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo/logo.png';
 import KakaoLoginButton from '@/components/kakaoLoginButton';
 import GoogleLoginButton from '@/components/googleLoginButton';
 import BannerSlider from '@/components/common/bannerSlider';
@@ -127,7 +127,7 @@ function RouteComponent() {
             </S.LoginColumn>
             <S.LoginRow>
               계정이 없나요?
-              <Link to="/auth/signIn">
+              <Link to="/auth/sign-in">
                 <p>회원가입</p>
               </Link>
             </S.LoginRow>
