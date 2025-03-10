@@ -58,7 +58,6 @@ const S = {
       width || (type === 'login' || type === 'finish' ? '100%' : '10vw')};
     height: ${({ height, type }) =>
       height || (type === 'login' || type === 'finish' ? '6vh' : '7vh')};
-
     background-color: ${theme.colors.primary};
     border-radius: ${theme.radius.large};
     font-size: ${theme.fontSizes.fz18};
