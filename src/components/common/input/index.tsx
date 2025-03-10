@@ -50,7 +50,7 @@ const S = {
     display: flex;
     position: relative;
     width: ${({ width, type }) =>
-      width || (type === 'email' || type === 'password' ? '20%' : '10vw')};
+      width || (type === 'email' || type === 'password' ? '100%' : '10vw')};
     height: ${({ height, type }) =>
       height || (type === 'email' || type === 'password' ? '6vh' : '7vh')};
     input {
@@ -90,7 +90,7 @@ const S = {
     height: 2.22vh;
     background-color: #ff0000;
     transform: rotate(45deg);
-    z-index: 2;
+    z-index: 1;
   `,
 };
 

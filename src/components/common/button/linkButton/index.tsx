@@ -55,7 +55,7 @@ const S = {
     justify-content: center;
     align-items: center;
     width: ${({ width, type }) =>
-      width || (type === 'login' || type === 'finish' ? '20%' : '10vw')};
+      width || (type === 'login' || type === 'finish' ? '100%' : '10vw')};
     height: ${({ height, type }) =>
       height || (type === 'login' || type === 'finish' ? '6vh' : '7vh')};
     background-color: ${theme.colors.primary};
@@ -63,11 +63,9 @@ const S = {
     font-size: ${theme.fontSizes.fz18};
     font-weight: ${theme.fontWeights.bold};
     cursor: pointer;
-
     &:hover {
       background-color: ${theme.colors.secondary2};
     }
-
     p {
       color: ${theme.colors.white};
     }

@@ -6,9 +6,11 @@ type CheckboxType = {
   children: React.ReactNode;
   // eslint-disable-next-line no-unused-vars
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (e: React.MouseEvent) => void;
 };
 
-const Checkbox = ({ select, children, onChange }: CheckboxType) => {
+const Checkbox = ({ select, children, onChange, onClick }: CheckboxType) => {
   return (
     <S.CheckboxContainer>
       <input
@@ -18,7 +20,11 @@ const Checkbox = ({ select, children, onChange }: CheckboxType) => {
         name={select}
         onChange={onChange}
       />
-      <label htmlFor={select}>{children}</label>
+      <label
+        htmlFor={select}
+        onClick={onClick}>
+        {children}
+      </label>
     </S.CheckboxContainer>
   );
 };
@@ -29,9 +35,14 @@ const S = {
     align-items: center;
     flex-direction: row;
     font-size: ${theme.fontSizes.fz20};
-    width: 6%;
-    height: 2vh;
-    gap: 5%;
+    width: auto;
+    min-height: 2vh;
+    gap: 0.2vw;
+
+    label {
+      white-space: nowrap;
+      cursor: pointer;
+    }
   `,
 };
 
